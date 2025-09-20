@@ -16,17 +16,9 @@ void Harl::error(void)
 {
     std :: cout <<"This is unacceptable! I want to speak to the manager now.\n";
 }
-// void Harl::complain(std :: string level)
-// {
-//     void (Harl::*func)();  // not this --> std :: string (*func)();
-//                             // because debug belongs to the class Harl, so the pointer must be a pointer to member function. not pointer to function
-//     //func = debug;
-//     func = &Harl::debug;
-//     (this->*func)();
 
-// }
- void Harl::complain(std :: string level)
- {
+void Harl::complain(std :: string level)
+{
     int flag = 0;
     void (Harl :: *func[4])() = {&Harl :: info,&Harl ::warning,&Harl ::error,&Harl ::debug};
     std :: string lev[4]  = {"INFO","WARNING","ERROR","DEBUG"};
@@ -40,5 +32,4 @@ void Harl::error(void)
     }
     if (flag == 0)
         std :: cerr << "Error\n";
-    
- }
+}
