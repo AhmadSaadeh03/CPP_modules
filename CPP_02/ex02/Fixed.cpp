@@ -46,51 +46,51 @@ std::ostream&  operator<<(std::ostream& os, const Fixed& fixed)// <<a
     os << fixed.toFloat();
     return os;
 }
-bool Fixed ::  operator>(const Fixed &other)
+bool  Fixed ::  operator>(const Fixed &other) const
 {
    
     if (this->_num > other._num)
         return true;
     return false;
 }
-bool Fixed ::  operator<(const Fixed &other)
+bool  Fixed ::  operator<(const Fixed &other)const
 {
         if (this->_num < other._num)
             return true;
     return false;
 }
-bool Fixed ::  operator>=(const Fixed &other)
+bool Fixed ::  operator>=(const Fixed &other) const
 {
         if (this->_num >= other._num)
             return true;
     return false;
 }
-bool Fixed ::  operator<=(const Fixed &other)
+bool Fixed ::  operator<=(const Fixed &other) const
 {
         if (this->_num <= other._num)
             return true;
     return false;
 }
-bool Fixed ::  operator==(const Fixed &other)
+bool Fixed ::  operator==(const Fixed &other) const
 {
         if (this->_num == other._num)
             return true;
     return false;
 }
-bool Fixed ::  operator!=(const Fixed &other)
+bool Fixed ::  operator!=(const Fixed &other) const
 {
         if (this->_num != other._num)
             return true;
     return false;
 }
-Fixed Fixed ::  operator+(const Fixed &other)
+Fixed Fixed ::  operator+(const Fixed &other)const
 {
-     Fixed result;
+    Fixed result;
     result._num = this->_num + other._num; //( A * scale ) + ( B * scale ) = ( (A + B) * scale )
     const Fixed obj = result;
     return obj;
 }
-Fixed Fixed ::  operator-(const Fixed &other)
+Fixed Fixed ::  operator-(const Fixed &other)const 
 {
      Fixed result;
     result._num = this->_num - other._num;
@@ -104,7 +104,7 @@ Fixed Fixed ::  operator*(const Fixed &other) const
     const Fixed obj = result;
     return obj;
 }
-Fixed Fixed ::  operator/(const Fixed &other)
+Fixed Fixed ::  operator/(const Fixed &other) const
 {
     Fixed result;
     result._num = this->_num / other.toFloat();
@@ -113,45 +113,60 @@ Fixed Fixed ::  operator/(const Fixed &other)
 }
 Fixed& Fixed :: operator++()
 {
-    this->_num+=1;
+    this->_num++;
     return *this;
 }
 Fixed Fixed :: operator++(int)
 {
     Fixed temp = *this;
-    this->_num++;       
+    this->_num+=1;       
     return temp;  
 }
-float Fixed:: min(Fixed &a,Fixed  &b)// i dont need to create an object to call it and it doesnt belong to spicific obj
+Fixed& Fixed :: operator--()
 {
-    if (a._num > b._num)
-        return b.toFloat();
-    else if (a._num < b._num)
-        return a.toFloat();
-    return -1;
+    this->_num-=1;
+    return *this;
 }
-float Fixed:: min(const Fixed &a,const Fixed  &b)// i dont need to create an object to call it and it doesnt belong to spicific obj
+Fixed Fixed :: operator--(int)
 {
-    if (a._num > b._num)
-        return b.toFloat();
-    else if (a._num < b._num)
-        return a.toFloat();
-    return -1;
+    Fixed temp = *this;
+    this->_num-=1;       
+    return temp;  
 }
-float Fixed:: max(Fixed &a,Fixed  &b)// i dont need to create an object to call it and it doesnt belong to spicific obj
+Fixed &Fixed:: min(Fixed &a,Fixed  &b)// i dont need to create an object to call it and it doesnt belong to spicific obj
 {
-    if (a._num > b._num)
-        return a.toFloat();
-    else if (a._num < b._num)
-        return b.toFloat();
-    return -1;
+    if (a > b)
+        return b;
+    else
+        return a;
 }
-float Fixed:: max(const Fixed &a,const Fixed  &b)// i dont need to create an object to call it and it doesnt belong to spicific obj
+const Fixed &Fixed:: min(const Fixed &a,const Fixed  &b)
 {
-    if (a._num > b._num)
-         return a.toFloat();
-    else if (a._num < b._num)
-         return b.toFloat();
-    return -1;
+    if (a > b)
+        return b;
+    else
+        return a;
 }
-
+Fixed &Fixed:: max(Fixed &a,Fixed  &b)// i dont need to create an object to call it and it doesnt belong to spicific obj
+{
+    if (a > b)
+        return a;
+    else
+        return b;
+}
+const Fixed &Fixed:: max(const Fixed &a,const Fixed  &b)
+{
+    if (a > b)
+        return a;
+    else
+        return b;
+}
+int Fixed :: getRawBits( void ) const //cannot define any member function inside the body , every this.() is constant so i cant change it
+{
+    std :: cout << "getRawBits member function called" << std :: endl;
+    return this->_num;
+};
+void Fixed ::  setRawBits( int const raw )
+{
+    this->_num = raw;
+}

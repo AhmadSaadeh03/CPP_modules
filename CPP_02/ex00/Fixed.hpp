@@ -4,7 +4,7 @@
 class Fixed
 {
     private : 
-                int fixed_num;
+                int _num;
                 const static int static_num;//init to 8 in file.cpp
     public : 
             Fixed();

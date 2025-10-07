@@ -7,12 +7,12 @@ Fixed :: Fixed() : _num(0)
     std::cout <<"Default constructor called" << std::endl;    
 };
 
-Fixed :: Fixed(const int num) : _num(0)
+Fixed :: Fixed(const int num)
 {
     std :: cout << "Int constructor called" << std :: endl;
     _num = num << static_num;
 };
-Fixed :: Fixed(const float num) : _num(0)
+Fixed :: Fixed(const float num)
 {
         std :: cout << "Float constructor called" << std :: endl;
         _num = roundf( num * (1 << static_num));//pow(2, n)
@@ -41,6 +41,14 @@ std::ostream&  operator<<(std::ostream& os, const Fixed& fixed)// <<a
 Fixed:: ~Fixed(){
      std::cout <<"Destructor called" << std::endl;    
 };
+float Fixed :: toFloat( void )const
+{
+    return (float)_num / (1 << static_num);
+}
+int Fixed :: toInt( void ) const
+{
+    return _num >> static_num;
+}
 int Fixed :: getRawBits( void ) const //cannot define any member function inside the body , every this.() is constant so i cant change it
 {
     std :: cout << "getRawBits member function called" << std :: endl;
@@ -49,12 +57,4 @@ int Fixed :: getRawBits( void ) const //cannot define any member function inside
 void Fixed ::  setRawBits( int const raw )
 {
     this->_num = raw;
-}
-float Fixed :: toFloat( void )const
-{
-    return (float)_num / (1 << static_num);
-}
-int Fixed :: toInt( void ) const
-{
-    return _num >> static_num;
 }

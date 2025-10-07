@@ -2,20 +2,20 @@
 
 const int Fixed::static_num = 8;
 
-Fixed :: Fixed() : fixed_num(0)
+Fixed :: Fixed() : _num(0)
 {
     std :: cout << "Default Constructor Called" << std :: endl;
 };
-Fixed :: Fixed(const Fixed &other) : fixed_num(other.fixed_num)
+Fixed :: Fixed(const Fixed &other) : _num(other._num)
 {
      std::cout <<"Copy Constructor Called" << std::endl;    
 };
 Fixed &Fixed :: operator=(const Fixed &other)
 {
         if (this != &other) {
-          this->fixed_num = other.fixed_num;
+          this->_num = other._num;
         }
-        std::cout <<"Assignment Operator Called" << std::endl;    
+        std::cout <<"Copy assignment operator called" << std::endl;    
         return (*this);
 };
 Fixed:: ~Fixed(){
@@ -24,9 +24,9 @@ Fixed:: ~Fixed(){
 int Fixed :: getRawBits( void ) const //cannot define any member function inside the body , every this.() is constant so i cant change it
 {
     std :: cout << "getRawBits member function called" << std :: endl;
-    return this->fixed_num;
+    return this->_num;
 };
 void Fixed ::  setRawBits( int const raw )
 {
-    this->fixed_num = raw;
+    this->_num = raw;
 }
