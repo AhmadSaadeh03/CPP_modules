@@ -3,8 +3,8 @@ FragTrap :: FragTrap()
 {
     std :: cout <<"FragTrap Default Constructor Called" << std :: endl;
     HitPoint = 100;
-    EnergyPoint = 50;
-    AttackDamage = 20;
+    EnergyPoint = 100;
+    AttackDamage = 30;
 };
 FragTrap :: FragTrap(std :: string name) : ClapTrap(name) // this is the way to call the parameterized constructor from the parent (not the default one)
 {

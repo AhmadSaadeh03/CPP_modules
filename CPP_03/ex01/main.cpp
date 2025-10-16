@@ -4,6 +4,8 @@
     int main()
 {
     ScavTrap scav("khaled");
+    ScavTrap s(scav);
     scav.attack("enemy");
+    scav.beRepaired(6);
     scav.guardGate();
 }

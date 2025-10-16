@@ -2,6 +2,7 @@
 ScavTrap :: ScavTrap()
 {
     std :: cout <<"ScavTrap Default Constructor Called" << std :: endl;
+    name = "";
     HitPoint = 100;
     EnergyPoint = 50;
     AttackDamage = 20;
@@ -14,7 +15,7 @@ ScavTrap :: ScavTrap(std :: string name) : ClapTrap(name) // this is the way to 
     EnergyPoint = 50;
     AttackDamage = 20;
 };
-ScavTrap :: ScavTrap(const ScavTrap &other)
+ScavTrap :: ScavTrap(const ScavTrap &other): ClapTrap(other)
 {
     
         std :: cout <<"ScavTrap Copy Constructor Called" << std :: endl;
@@ -22,6 +23,18 @@ ScavTrap :: ScavTrap(const ScavTrap &other)
         this->HitPoint = other.HitPoint;
         this->EnergyPoint = other.EnergyPoint;
         this->AttackDamage = other.AttackDamage;
+}
+ScavTrap& ScavTrap :: operator=(const ScavTrap &other)
+{
+    std::cout <<"ScavTrap Copy assignment operator called" << std::endl;    
+    if (this != &other)
+    {
+        this->AttackDamage = other.AttackDamage;
+        this->EnergyPoint = other.EnergyPoint;
+        this->HitPoint = other.HitPoint;
+        this->name = other.name;
+    }
+    return *this;
 }
 ScavTrap ::  ~ScavTrap()
 {
@@ -31,3 +44,10 @@ void ScavTrap :: guardGate()
 {
     std :: cout << "ScavTrap " << name << " is now in Gate Keeper mode ! " << std :: endl;
 }
+void  ScavTrap :: attack(const std :: string &target)
+{
+    std :: cout << "ScavTrap :\n"; //parital override // its not override actually is a hidden functino 
+    ClapTrap :: attack(target);
+    // i can rewrite the whole function but that if i wanna change the whole logic
+
+}; 
