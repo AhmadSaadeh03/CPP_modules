@@ -1,10 +1,10 @@
 CXX = c++
 
-CXXFLAGS = -Wall -Wextra -Werror -std=c++98 
+CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
-SRC = main.cpp Bureaucrat.cpp
+SRC = main.cpp Bureaucrat.cpp Form.cpp
 
-NAME = Bureaucrat
+NAME = Form
 
 OBJ = $(SRC:.cpp=.o)
 

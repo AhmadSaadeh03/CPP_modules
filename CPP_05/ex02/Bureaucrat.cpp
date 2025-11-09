@@ -1,9 +1,9 @@
 #include "Bureaucrat.hpp"
 
-Bureaucrat :: Bureaucrat() : name("Unknown") ,grade(1)
+Bureaucrat :: Bureaucrat() : name("Unknown") ,grade(150)
 {
     std :: cout << "Bureaucrat Defualt constructor called" << std :: endl;
-    if (grade > 150)
+    if (grade >= 150)
             throw GradeTooLowException();
         else if (grade < 1)
             throw GradeTooHighException();
@@ -31,7 +31,7 @@ Bureaucrat& Bureaucrat ::  operator=(const Bureaucrat &other)
 {
     if (this != &other)
     {
-        std :: cout << "Bureaucrat operator= called" << std :: endl;
+        std :: cout << "Bureaucrat Copy assignment operator called" << std :: endl;
         this->grade = other.grade;
     }
     return *this;
@@ -74,4 +74,28 @@ void Bureaucrat :: decrementBureaucrat()
             throw GradeTooLowException();
     else if (this->grade < 1)
             throw GradeTooHighException();
+}
+void Bureaucrat :: signForm(AForm &f)
+{
+    try
+    {
+        f.beSigned(*this);
+        std :: cout << this->getName() << " signed " << f.getName() << std :: endl;
+    }
+    catch(const std::exception& e)
+    {
+        std::cout << this->getName() << " couldn’t sign " << f.getName() << " because " << e.what() << std::endl;
+    }
+};
+void Bureaucrat :: executeForm(AForm const & form) const
+{
+     try
+    {
+        form.execute(*this);
+        std :: cout << this->getName() << " executed " << form.getName() << std :: endl;
+    }
+    catch(const std::exception& e)
+    {
+        std::cout << this->getName() << " couldn’t execute " << form.getName() << " because " << e.what() << std::endl;
+    }
 }

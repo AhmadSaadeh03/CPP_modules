@@ -3,7 +3,10 @@
 Bureaucrat :: Bureaucrat() : name("Unknown") ,grade(1)
 {
     std :: cout << "Bureaucrat Defualt constructor called" << std :: endl;
-
+    if (grade > 150)
+            throw GradeTooLowException();
+        else if (grade < 1)
+            throw GradeTooHighException();
 }
 Bureaucrat :: Bureaucrat(const std :: string name,int grade) : name(name) , grade(grade)
 {
@@ -28,7 +31,7 @@ Bureaucrat& Bureaucrat ::  operator=(const Bureaucrat &other)
 {
     if (this != &other)
     {
-        std :: cout << "Bureaucrat operator= called" << std :: endl;
+        std :: cout << "Bureaucrat Copy assignment operator called" << std :: endl;
         this->grade = other.grade;
     }
     return *this;
@@ -72,3 +75,15 @@ void Bureaucrat :: decrementBureaucrat()
     else if (this->grade < 1)
             throw GradeTooHighException();
 }
+void Bureaucrat :: signForm(Form &f)
+{
+    try
+    {
+        f.beSigned(*this);
+        std :: cout << this->getName() << " signed " << f.getName() << std :: endl;
+    }
+    catch(const std::exception& e)
+    {
+        std::cout << this->getName() << " couldn’t sign " << f.getName() << " because " << e.what() << std::endl;
+    }
+};

@@ -2,7 +2,8 @@
 #define BUREAUCRAT_HPP
 #include <iostream>
 #include <string>
-
+#include "Form.hpp"
+class Form;
 class Bureaucrat
 {
     const std :: string name;
@@ -17,6 +18,7 @@ class Bureaucrat
             int getGrade()const;
             void incrementBureaucrat();
             void decrementBureaucrat();
+            void signForm(Form &f);
             class GradeTooHighException : public std :: exception{
                 public:
                         virtual char const* what() const throw(); // means what() promises not to throw any exceptions at all.
