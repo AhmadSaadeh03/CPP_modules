@@ -22,7 +22,8 @@ int main()
         d.push_back(7);
         d.push_back(4);
         d.push_back(3);
-         easyfind(d,2);
+        std :: deque<int> ::iterator it = easyfind(d,2);
+        std :: cout << *it<< std :: endl;
     }
     catch(const std::exception& e)
     {
@@ -35,8 +36,8 @@ int main()
         v.push_back(7);
         v.push_back(4);
         v.push_back(3);
-        
-        easyfind(v,44);
+        std :: vector<int> ::iterator it = easyfind(v,44);
+        std :: cout << *it<< std :: endl;
     }
     catch(const std::exception& e)
     {

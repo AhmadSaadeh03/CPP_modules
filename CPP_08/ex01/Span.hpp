@@ -16,7 +16,7 @@ class Span
             Span& operator=(const Span &other);
             ~Span();
             void addNumber(int num);
-            void generateNumbers(std :: vector<int> generate,std :: vector<int> :: iterator begin,std :: vector<int> :: iterator end);
+            void generateNumbers(std :: vector<int> :: iterator begin,std :: vector<int> :: iterator end); // std :: vector<int> generate,
             int shortestSpan();
             int longestSpan();
             class NotEnoughNumbersException : public std :: exception
