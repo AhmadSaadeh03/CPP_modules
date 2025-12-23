@@ -31,6 +31,7 @@ int main(int argc , char **argv)
     BitcoinExchange a;
     if (!a.read_csv())
         return 1;
+    a.handle_txt(f);
 
 
 }
